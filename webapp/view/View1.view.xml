@@ -1,0 +1,163 @@
+<mvc:View controllerName="com.learnui5.openui5187.openui5187.controller.View1"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns:unified="sap.ui.unified"
+	xmlns:core="sap.ui.core" xmlns:f="sap.f"
+	xmlns:cssgrid="sap.ui.layout.cssgrid"
+	xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="What is new in OpenUI5 1.87">
+					<content >
+
+						<Panel headerText="Link as a Title">
+							<Title>
+								<Link text="This is a link as a Title" href="#"/>
+							</Title>
+						</Panel>
+						<Panel headerText="Empty Text Place Holder">
+							<Text emptyIndicatorMode="On">
+
+							</Text>
+						</Panel>
+						<Panel headerText="Badge Animation">
+							<Button id="BadgedButton" class="sapUiTinyMarginBeginEnd" type="Default" text="Button with Badge">
+								<customData>
+									<BadgeCustomData key="badge" value="10" visible="true" animation="Update"/>
+								</customData>
+							</Button>
+							<Link text="Click to view animation" press="handleViewAnimation"/>
+
+						</Panel>
+						<Panel headerText="Image with Lazy Loading">
+							<Image lazyLoading="true" src="images/sample.jpg"/>
+						</Panel>
+
+						<Panel headerText="Planning Calendar">
+
+							<PlanningCalendar id="PC1" startDate="{path: '/startDate'}" rows="{path: '/people'}" appointmentsVisualization="Filled" appointmentSelect="handleAppointmentSelect" showEmptyIntervalHeaders="false" showWeekNumbers="true">
+								<toolbarContent>
+									<Title text="Title" titleStyle="H4"/>
+								</toolbarContent>
+								<rows>
+									<PlanningCalendarRow icon="{pic}" title="{name}" text="{role}" appointments="{path : 'appointments', templateShareable: false}" intervalHeaders="{path: 'headers', templateShareable: false}">
+										<customData>
+											<core:CustomData key="emp-name" value="{name}" writeToDom="true"/>
+										</customData>
+										<appointments>
+											<unified:CalendarAppointment startDate="{start}" endDate="{end}" icon="{pic}" title="{title}" text="{info}" type="{type}" tentative="{tentative}">
+											</unified:CalendarAppointment>
+										</appointments>
+										<intervalHeaders>
+											<unified:CalendarAppointment startDate="{start}" endDate="{end}" icon="{pic}" title="{title}" type="{type}">
+											</unified:CalendarAppointment>
+										</intervalHeaders>
+									</PlanningCalendarRow>
+								</rows>
+							</PlanningCalendar>
+
+							<VBox class="sapUiSmallMarginTop">
+								<Button text="Click to Get EndDate" press="handleGetEndDate"></Button>
+								<Button text="Click to Get Visible Intervals Count" press="handleGetVisibleIntervalsCount"></Button>
+							</VBox>
+
+						</Panel>
+
+
+						<Panel headerText="Drag and Resize dialog using keyboard">
+							<Button text="Click me to Open a Dialog" press="handleOpenDialog"></Button>
+
+
+						</Panel>
+						<Panel headerText="Grid List Navigation Improvements">
+
+							<Text text="Select and item and navigate through list with tab or arrow keys"  class="sapUiLargeMargin"/>
+	<cssgrid:CSSGrid id="container">
+								<cssgrid:customLayout >
+									<cssgrid:GridResponsiveLayout containerQuery="true">
+										<cssgrid:layout>
+											<cssgrid:GridSettings gridGap="1rem" gridTemplateColumns="repeat(2, 1fr)"></cssgrid:GridSettings>
+										</cssgrid:layout>
+										<cssgrid:layoutS>
+											<cssgrid:GridSettings gridGap="1rem" gridTemplateColumns="1fr"></cssgrid:GridSettings>
+										</cssgrid:layoutS>
+									</cssgrid:GridResponsiveLayout>
+								</cssgrid:customLayout>
+
+								<f:GridList id="gridList1" headerText="GridList 1" borderReached=".onBorderReached" items="{path: '/GridData/items1'}">
+									<f:customLayout>
+										<cssgrid:GridBasicLayout gridAutoRows="5rem" gridTemplateColumns="repeat(auto-fill, minmax(5rem, 1fr))" gridGap="0.5rem"></cssgrid:GridBasicLayout>
+									</f:customLayout>
+									<f:GridListItem>
+										<f:layoutData>
+											<cssgrid:GridItemLayoutData gridRow="span 2" gridColumn="span 2"/>
+										</f:layoutData>
+										<VBox class="sapUiSmallMargin">
+											<Title text="{title}" wrapping="true" />
+											<Label text="Subtitle" wrapping="true" />
+										</VBox>
+									</f:GridListItem>
+								</f:GridList>
+
+								<f:GridList id="gridList2" headerText="GridList 2" borderReached=".onBorderReached" items="{path: '/GridData/items2'}">
+									<f:customLayout>
+										<cssgrid:GridBasicLayout gridAutoRows="5rem" gridTemplateColumns="repeat(auto-fill, minmax(5rem, 1fr))" gridGap="0.5rem"></cssgrid:GridBasicLayout>
+									</f:customLayout>
+									<f:GridListItem>
+										<f:layoutData>
+											<cssgrid:GridItemLayoutData gridRow="span 1" gridColumn="span 3"/>
+										</f:layoutData>
+										<VBox class="sapUiSmallMargin">
+											<Title text="{title}" wrapping="true" />
+											<Label text="Subtitle" wrapping="true" />
+										</VBox>
+									</f:GridListItem>
+								</f:GridList>
+
+								<f:GridList id="gridList3" headerText="GridList 3" borderReached=".onBorderReached" items="{path: '/GridData/items3'}">
+									<f:customLayout>
+										<cssgrid:GridBasicLayout gridAutoRows="5rem" gridTemplateColumns="repeat(auto-fill, minmax(5rem, 1fr))" gridGap="0.5rem"></cssgrid:GridBasicLayout>
+									</f:customLayout>
+									<f:GridListItem>
+										<f:layoutData>
+											<cssgrid:GridItemLayoutData gridRow="span 2" gridColumn="span 3" />
+										</f:layoutData>
+										<VBox class="sapUiSmallMargin">
+											<Title text="{title}" wrapping="true" />
+											<Label text="Subtitle" wrapping="true" />
+										</VBox>
+									</f:GridListItem>
+								</f:GridList>
+
+								<f:GridList id="gridList4" headerText="GridList 4" borderReached=".onBorderReached" items="{path: '/GridData/items4'}">
+									<f:customLayout>
+										<cssgrid:GridBasicLayout gridAutoRows="5rem" gridTemplateColumns="repeat(auto-fill, minmax(5rem, 1fr))" gridGap="0.5rem"></cssgrid:GridBasicLayout>
+									</f:customLayout>
+									<f:GridListItem>
+										<f:layoutData>
+											<cssgrid:GridItemLayoutData gridRow="span 3" gridColumn="span 2" />
+										</f:layoutData>
+										<VBox class="sapUiSmallMargin">
+											<Title text="{title}" wrapping="true" />
+											<Label text="Subtitle" wrapping="true" />
+										</VBox>
+									</f:GridListItem>
+								</f:GridList>
+
+							</cssgrid:CSSGrid>
+						</Panel>
+
+						</content>
+					</Page>
+				</pages>
+			</App>
+
+
+
+
+
+
+
+
+		</Shell>
+	</mvc:View>
